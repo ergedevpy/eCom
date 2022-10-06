@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
     'django_countries',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ MEDIA_URL = '/uploads/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from local_settings import *

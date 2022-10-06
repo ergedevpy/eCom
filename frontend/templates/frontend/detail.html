@@ -9,8 +9,11 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
+                {#                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"#}
+                {#                                           src="{{ item.image.url }}" alt="..."/>#}
+                {#                </div>#}
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                                           src="{{ item.image.url }}" alt="..."/>
+                                           src="{{ item.image }}" alt="..."/>
                 </div>
                 <div class="col-md-6">
                     {#                    <div class="small mb-1">SKU: BST-498</div>#}
@@ -31,6 +34,7 @@
                                 shopping</a>
                             <a class="btn btn-outline-dark mt-auto" href="{{ item.get_add_to_cart }}">Add to cart <i
                                     class="bi-cart-fill me-1"></i></a>
+
                         </div>
                     </div>
 

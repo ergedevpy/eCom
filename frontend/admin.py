@@ -1,19 +1,31 @@
 from django.contrib import admin
-from .models import Item, Order, OrderItem, Payment, Coupon, BillingAddress, Refund
+from .models import Item, Order, OrderItem, Coupon, Payment, BillingAddress, Refund
+
+
+def change_refund_to_granted(modelAdmin, request, queryset):
+    queryset.update(refund_granted=True)
+
+
+def change_to_delivered(modelAdmin, request, queryset):
+    queryset.update(delivered=True, received=True)
+
+
+class SnippetOrderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'ordered', 'delivered', 'refund_request', 'refund_granted', 'billing_address', 'payment',
+                    'coupon']
+    list_display_links = ['user', 'billing_address', 'payment', 'coupon']
+
+    actions = [change_refund_to_granted, change_to_delivered]
 
 
 class ItemAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-    list_display = ['id', 'slug', 'title', 'price', 'discount_price', 'category', 'image']
-
-    save_as = True
-    save_on_top = True
+    list_display = ['id', 'title', 'price', 'category', 'description', 'image', ]
 
 
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Order)
+admin.site.register(Order, SnippetOrderAdmin)
 admin.site.register(OrderItem)
-admin.site.register(Payment)
 admin.site.register(Coupon)
+admin.site.register(Payment)
 admin.site.register(BillingAddress)
 admin.site.register(Refund)
